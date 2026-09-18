@@ -38,6 +38,7 @@ export default function App() {
   const [railTab, setRailTab] = useState<'log' | 'work' | 'market'>('log')
   const [pauseOpen, setPauseOpen] = useState(false)
   const [authOpen, setAuthOpen] = useState(false)
+  const [mobileTab, setMobileTab] = useState<'board' | 'profile' | 'more'>('board')
   const recordedFinish = useRef(false)
 
   useEffect(() => {
@@ -62,6 +63,12 @@ export default function App() {
     }, 2800)
     return () => window.clearTimeout(t)
   }, [state?.lastToast])
+
+  useEffect(() => {
+    if (!state || state.phase !== 'playing') return
+    const active = state.players[state.activeIndex]
+    if (active?.pendingEvent && !active.isAi) setMobileTab('board')
+  }, [state])
 
   useEffect(() => {
     if (!state || state.phase !== 'playing') return
@@ -141,7 +148,7 @@ export default function App() {
     <>
       <Ambient />
       <VictoryBurst show={state.phase === 'finished' && state.winnerIds.length > 0} />
-      <div className={`app playing desk ${shake ? 'app-shake' : ''}`}>
+      <div className={`app playing desk mobile-${mobileTab} ${shake ? 'app-shake' : ''}`}>
         <header className="desk-top">
           <div className="desk-brand">
             <span className="desk-logo">Круг Года</span>
@@ -347,6 +354,33 @@ export default function App() {
             </div>
           </aside>
         </div>
+
+        <nav className="mobile-nav" aria-label="Мобильная навигация">
+          <button
+            type="button"
+            className={mobileTab === 'board' ? 'on' : ''}
+            onClick={() => setMobileTab('board')}
+          >
+            <span className="mobile-nav-ico">◎</span>
+            Доска
+          </button>
+          <button
+            type="button"
+            className={mobileTab === 'profile' ? 'on' : ''}
+            onClick={() => setMobileTab('profile')}
+          >
+            <span className="mobile-nav-ico">☺</span>
+            Герой
+          </button>
+          <button
+            type="button"
+            className={mobileTab === 'more' ? 'on' : ''}
+            onClick={() => setMobileTab('more')}
+          >
+            <span className="mobile-nav-ico">☰</span>
+            Ещё
+          </button>
+        </nav>
 
         {active.pendingEvent && humanTurn && (
           <EventModal

@@ -3678,3 +3678,379 @@ html, body, #root {
   border-color: rgba(62, 207, 154, 0.55);
   background: rgba(62, 207, 154, 0.15);
 }
+
+/* ========== MOBILE ADAPTATION ========== */
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  html, body, #root {
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  .mobile-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.25rem;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 45;
+    padding: 0.4rem 0.55rem calc(0.45rem + env(safe-area-inset-bottom));
+    background: rgba(6, 18, 16, 0.94);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+  }
+  .mobile-nav button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    min-height: 3rem;
+    border: none;
+    border-radius: 0.75rem;
+    background: transparent;
+    color: #9bb5ae;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+  .mobile-nav button.on {
+    background: rgba(62, 207, 154, 0.18);
+    color: #fff;
+  }
+  .mobile-nav-ico {
+    font-size: 1.15rem;
+    line-height: 1;
+  }
+
+  .app.playing.desk {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+    padding: 0.4rem 0.45rem calc(4.1rem + env(safe-area-inset-bottom)) !important;
+    display: grid !important;
+    grid-template-rows: auto 1fr !important;
+    gap: 0.4rem !important;
+  }
+
+  .desk-top {
+    grid-template-columns: 1fr auto !important;
+    grid-template-rows: auto auto !important;
+    gap: 0.35rem !important;
+    padding: 0.4rem 0.45rem !important;
+  }
+  .desk-brand { grid-column: 1; }
+  .desk-actions { order: 0; }
+  .desk-status {
+    grid-column: 2;
+    grid-row: 1;
+    max-width: none !important;
+    align-items: flex-end !important;
+    flex-direction: column !important;
+    gap: 0.25rem !important;
+  }
+  .desk-seats {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.1rem;
+  }
+  .desk-logo { font-size: 1rem !important; }
+  .desk-year { font-size: 0.65rem; }
+  .desk-turn {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.5rem;
+    white-space: nowrap;
+  }
+  .desk-tip {
+    display: none;
+  }
+  .desk-menu-btn {
+    min-height: 2.2rem;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.72rem;
+  }
+  .seat-chip {
+    flex-shrink: 0;
+    padding: 0.2rem 0.4rem 0.2rem 0.2rem;
+  }
+  .seat-meta strong { font-size: 0.7rem; }
+  .seat-meta em { font-size: 0.65rem; }
+  .seat-chip .portrait.size-sm { width: 2.2rem; }
+
+  .desk-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 1fr !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    gap: 0 !important;
+  }
+
+  /* По умолчанию скрываем панели; показываем по вкладке */
+  .app.playing.desk .ledger,
+  .app.playing.desk .desk-stage,
+  .app.playing.desk .desk-rail {
+    display: none !important;
+    max-width: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+  }
+
+  .app.playing.desk.mobile-board .desk-stage {
+    display: flex !important;
+  }
+  .app.playing.desk.mobile-profile .ledger {
+    display: flex !important;
+  }
+  .app.playing.desk.mobile-more .desk-rail {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  .app.playing.desk .ledger-main {
+    border-radius: 1rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .app.playing.desk .ledger-tabs {
+    border-radius: 0 1rem 1rem 0;
+  }
+  .app.playing.desk .ledger-tabs button {
+    min-height: 2.6rem;
+    width: 2.7rem;
+  }
+  .app.playing.desk .ledger-tabs button .tab-label {
+    display: block !important;
+    font-size: 0.5rem;
+  }
+  .app.playing.desk .ledger-head .portrait.size-lg {
+    width: 4.2rem;
+  }
+
+  .app.playing.desk .board-panel {
+    padding: 0.25rem !important;
+    border-radius: 0.9rem !important;
+  }
+  .app.playing.desk .board-legend {
+    display: flex !important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 0.25rem;
+    max-width: 100%;
+    margin-bottom: 0.15rem !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .app.playing.desk .legend-chip {
+    flex-shrink: 0;
+    font-size: 0.62rem;
+    padding: 0.15rem 0.35rem;
+  }
+  .app.playing.desk .ring-wrap {
+    width: min(100%, min(58dvh, 360px)) !important;
+    max-height: min(58dvh, calc(100% - 4.5rem)) !important;
+  }
+  .app.playing.desk .hub-portrait {
+    width: 3.6rem !important;
+  }
+  .app.playing.desk .ring-hub {
+    min-width: 48%;
+    padding: 0.35rem 0.45rem !important;
+  }
+  .app.playing.desk .hub-eyebrow {
+    font-size: 0.7rem !important;
+  }
+  .app.playing.desk .month-rail {
+    display: none;
+  }
+
+  .desk-action {
+    gap: 0.3rem;
+  }
+  .roll-btn {
+    min-height: 3rem;
+    font-size: 0.92rem;
+    padding: 0.35rem 1rem 0.35rem 0.4rem;
+    width: min(100%, 320px);
+    justify-content: center;
+  }
+  .desk-action .win-meter.compact {
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .app.playing.desk .desk-rail {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .rail-tabs button {
+    min-height: 2.6rem;
+    font-size: 0.78rem;
+  }
+  .rail-body {
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Landing */
+  .landing {
+    min-height: 100dvh;
+    place-items: end stretch !important;
+  }
+  .landing-content {
+    max-width: none;
+    padding: 1.25rem 1rem calc(1.5rem + env(safe-area-inset-bottom));
+    background: linear-gradient(to top, rgba(5, 16, 14, 0.96) 55%, transparent);
+  }
+  .landing-brand {
+    font-size: clamp(2.2rem, 12vw, 3rem);
+  }
+  .landing-title {
+    font-size: 1.1rem;
+    max-width: none;
+  }
+  .landing-lead {
+    display: block !important;
+    font-size: 0.88rem;
+    max-width: none;
+  }
+  .landing-cta {
+    flex-direction: column;
+  }
+  .landing-primary,
+  .landing-secondary {
+    width: 100%;
+    min-height: 3rem;
+    justify-content: center;
+    text-align: center;
+  }
+  .landing-auth-row {
+    width: 100%;
+  }
+  .landing-auth-row .landing-secondary {
+    flex: 1;
+  }
+
+  /* Setup carousels */
+  .compact-setup {
+    width: 100%;
+    padding: 0.5rem;
+    max-height: 100dvh;
+  }
+  .compact-setup .select-card {
+    max-height: calc(100dvh - 3.5rem);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.9rem;
+  }
+  .hero-layout {
+    grid-template-columns: 1fr !important;
+    justify-items: center;
+    text-align: center;
+  }
+  .dream-carousel {
+    flex-direction: column;
+  }
+  .dream-carousel .nav-arrow {
+    align-self: center;
+  }
+  .dream-art {
+    aspect-ratio: 16 / 11;
+  }
+
+  /* Modals */
+  .modal-backdrop {
+    padding: 0.5rem;
+    align-items: flex-end;
+  }
+  .modal.event-card,
+  .auth-card,
+  .pause-card {
+    width: 100% !important;
+    max-width: none !important;
+    max-height: min(88dvh, 720px);
+    border-radius: 1.1rem 1.1rem 0.5rem 0.5rem;
+    margin-bottom: env(safe-area-inset-bottom);
+  }
+  .choice-list {
+    max-height: 32vh;
+  }
+  .modal-footer {
+    gap: 0.75rem;
+  }
+  .ok-btn, .icon-btn {
+    min-width: 3.2rem;
+    min-height: 3.2rem;
+  }
+
+  .toast.desk-toast {
+    top: auto;
+    bottom: calc(4.6rem + env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 1.5rem);
+    max-width: 420px;
+  }
+
+  .banner.won {
+    flex-direction: column;
+    align-items: stretch;
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .app.playing.desk .ring-wrap {
+    width: min(100%, min(52dvh, 300px)) !important;
+  }
+  .desk-menu-btn:first-child {
+    max-width: 5.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .app.playing.desk {
+    padding-bottom: calc(3.4rem + env(safe-area-inset-bottom)) !important;
+  }
+  .app.playing.desk .ring-wrap {
+    width: min(42dvh, 280px) !important;
+    max-height: 42dvh !important;
+  }
+  .mobile-nav button {
+    flex-direction: row;
+    gap: 0.35rem;
+    min-height: 2.5rem;
+    font-size: 0.75rem;
+  }
+  .desk-tip { display: none !important; }
+}
+@media (max-width: 768px) {
+  .auth-form input {
+    font-size: 16px; /* iOS: без автозума */
+    min-height: 2.75rem;
+  }
+  button, .roll-btn, .landing-primary, .menu-btn {
+    touch-action: manipulation;
+  }
+  /* перебиваем старый 780px-стек */
+  .app.playing.desk {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+  }
+}
