@@ -40,6 +40,22 @@ export function SideLedger({ player: p }: Props) {
 
   return (
     <aside className="ledger" aria-label="Тетрадь баланса">
+      <nav className="ledger-tabs" aria-label="Разделы тетради">
+        {TABS.map((t) => (
+          <button
+            key={t.id}
+            type="button"
+            className={tab === t.id ? 'on' : ''}
+            title={t.label}
+            onClick={() => setTab(t.id)}
+          >
+            <span className="tab-ico" data-tab={t.id}>
+              {t.id === 'career' ? '👔' : t.icon}
+            </span>
+            <span className="tab-label">{t.label}</span>
+          </button>
+        ))}
+      </nav>
       <div className="ledger-main">
         <header className="ledger-head">
           <CharacterPortrait
@@ -231,23 +247,6 @@ export function SideLedger({ player: p }: Props) {
           </div>
         )}
       </div>
-
-      <nav className="ledger-tabs" aria-label="Разделы тетради">
-        {TABS.map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            className={tab === t.id ? 'on' : ''}
-            title={t.label}
-            onClick={() => setTab(t.id)}
-          >
-            <span className="tab-ico" data-tab={t.id}>
-              {t.id === 'career' ? '👔' : t.icon}
-            </span>
-            <span className="tab-label">{t.label}</span>
-          </button>
-        ))}
-      </nav>
     </aside>
   )
 }

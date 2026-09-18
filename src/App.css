@@ -4054,3 +4054,382 @@ html, body, #root {
     overflow: hidden !important;
   }
 }
+
+/* ========== MOBILE FIX: полная ширина, без 3-колонок ========== */
+@media (max-width: 768px) {
+  .app.playing.desk .desk-grid {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .app.playing.desk .ledger,
+  .app.playing.desk .desk-stage,
+  .app.playing.desk .desk-rail {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    display: none !important;
+  }
+
+  .app.playing.desk.mobile-board .desk-stage {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .app.playing.desk.mobile-profile .ledger {
+    display: flex !important;
+  }
+
+  .app.playing.desk.mobile-more .desk-rail {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .app.playing.desk .board-panel {
+    width: 100% !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+  }
+
+  .app.playing.desk .ring-wrap {
+    width: min(92vw, 56dvh, 340px) !important;
+    max-width: 100% !important;
+    max-height: min(56dvh, calc(100% - 5rem)) !important;
+    margin-inline: auto !important;
+  }
+
+  .app.playing.desk .desk-action {
+    width: 100% !important;
+    max-width: none !important;
+    align-items: center !important;
+  }
+
+  .app.playing.desk .roll-btn {
+    width: calc(100% - 0.5rem) !important;
+    max-width: 360px !important;
+  }
+
+  .app.playing.desk .desk-action .win-meter.compact {
+    width: calc(100% - 0.5rem) !important;
+    max-width: 360px !important;
+  }
+
+  /* Компактный хедер */
+  .app.playing.desk .desk-top {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 0.35rem 0.5rem !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+  }
+  .app.playing.desk .desk-brand {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .app.playing.desk .desk-status {
+    flex: 0 0 auto !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    max-width: none !important;
+    align-items: flex-end !important;
+  }
+  .app.playing.desk .desk-seats {
+    flex: 1 1 100%;
+    width: 100%;
+    order: 3;
+  }
+  .app.playing.desk .desk-turn {
+    display: none !important; /* дублирует seat-chip на мобилке */
+  }
+  .app.playing.desk .desk-tip {
+    display: none !important;
+  }
+
+  .app.playing.desk .ledger,
+  .app.playing.desk .desk-rail {
+    max-width: none !important;
+  }
+}
+
+/* ========== Desktop ledger: tabs справа ========== */
+@media (min-width: 769px) {
+  .ledger {
+    flex-direction: row-reverse;
+  }
+  .ledger-tabs {
+    border-radius: 1rem 0 0 1rem;
+    border-right: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .ledger-main {
+    border-radius: 0 1rem 1rem 0;
+    border-left: none;
+  }
+}
+
+/* ========== MOBILE v2 — чистый full-bleed ========== */
+@media (max-width: 768px) {
+  /* Корневой .app больше не сжимает экран (было 100% - 1.5rem) */
+  .app {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .app.setup-app {
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .landing {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    place-items: end stretch !important;
+    margin: 0 !important;
+  }
+
+  .landing-bg,
+  .landing-wash {
+    inset: 0 !important;
+  }
+
+  .landing-content {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+    padding: 1.15rem 1rem calc(1.35rem + env(safe-area-inset-bottom)) !important;
+  }
+
+  .landing-title,
+  .landing-lead {
+    max-width: none !important;
+  }
+
+  .landing-cta {
+    flex-direction: column !important;
+    width: 100%;
+  }
+
+  .landing-primary,
+  .landing-secondary {
+    width: 100% !important;
+    box-sizing: border-box;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .landing-auth-row {
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .landing-auth-row .landing-secondary {
+    flex: 1;
+  }
+
+  .app.playing.desk {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.35rem 0.4rem calc(4rem + env(safe-area-inset-bottom)) !important;
+    box-sizing: border-box !important;
+  }
+
+  .app.playing.desk .desk-top {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* На мобилке профиль открывается из Меню / Герой */
+  .app.playing.desk .desk-actions .desk-menu-btn:not(.primary-outline) {
+    display: none !important;
+  }
+
+  .app.playing.desk .desk-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .app.playing.desk .ledger {
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .app.playing.desk .ledger-tabs {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 0.85rem 0.85rem 0 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-bottom: none !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.3rem !important;
+    gap: 0.2rem !important;
+    background: rgba(18, 36, 32, 0.95) !important;
+    scrollbar-width: none;
+  }
+
+  .app.playing.desk .ledger-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .app.playing.desk .ledger-tabs button {
+    flex: 1 0 auto !important;
+    width: auto !important;
+    min-width: 3rem !important;
+    min-height: 2.75rem !important;
+  }
+
+  .app.playing.desk .ledger-tabs button .tab-label {
+    display: block !important;
+    font-size: 0.55rem !important;
+  }
+
+  .app.playing.desk .ledger-main {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 0 0 0.85rem 0.85rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-top: none !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    padding: 0.7rem 0.75rem !important;
+  }
+
+  .app.playing.desk .ledger-head {
+    flex-wrap: wrap;
+  }
+
+  .app.playing.desk .ledger-head .portrait.size-lg {
+    width: 3.8rem !important;
+  }
+
+  .app.playing.desk .ledger-row {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    gap: 0.4rem !important;
+    align-items: baseline !important;
+    width: 100% !important;
+  }
+
+  .app.playing.desk .ledger-row dt,
+  .app.playing.desk .ledger-row dd {
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .app.playing.desk .ledger-row dd {
+    text-align: right !important;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .app.playing.desk .desk-stage,
+  .app.playing.desk .desk-rail,
+  .app.playing.desk .board-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .app.playing.desk .board-panel.neon-board {
+    overflow: hidden !important;
+  }
+
+  .app.playing.desk .board-legend {
+    display: none !important;
+  }
+
+  .app.playing.desk .ring-wrap {
+    width: min(88vw, 52dvh) !important;
+    max-width: calc(100% - 0.5rem) !important;
+    aspect-ratio: 1 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: hidden;
+  }
+
+  .app.playing.desk .month-label {
+    font-size: 6.5px !important;
+  }
+
+  .app.playing.desk .desk-action {
+    width: 100% !important;
+    padding: 0 0.15rem;
+    box-sizing: border-box;
+  }
+
+  .app.playing.desk .roll-btn {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .app.playing.desk .win-meter.compact {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .app.playing.desk .win-meter.compact span,
+  .app.playing.desk .win-meter.compact .meter-label {
+    font-size: 0.58rem !important;
+  }
+
+  .app.playing.desk .desk-log li {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .app.playing.desk .rail-panel .btn-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.4rem !important;
+  }
+
+  .app.playing.desk .rail-panel .btn-row button {
+    width: 100%;
+    min-height: 2.6rem;
+  }
+
+  .app.playing.desk .desk-brand .desk-logo {
+    font-size: 0.95rem !important;
+    white-space: nowrap;
+  }
+
+  .app.playing.desk .seat-meta em {
+    font-size: 0.62rem !important;
+    white-space: nowrap;
+  }
+
+  .mobile-nav {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .compact-setup,
+  .compact-setup .select-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
